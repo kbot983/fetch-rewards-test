@@ -48,7 +48,14 @@ const MainPage = () => {
     minAge: number,
     maxAge: number,
   ) => {
+    const currentParams = new URLSearchParams(window.location.search);
     const searchParams = new URLSearchParams();
+    if (currentParams.getAll("zipCodes[]").length > 0) {
+      currentParams
+        .getAll("zipCodes[]")
+        .forEach((zip) => searchParams.append("zipCodes[]", zip));
+    }
+
     currentBreed.forEach((breed) => searchParams.append("breeds[]", breed));
     searchParams.set("page", "1");
     if (minAge) searchParams.set("ageMin", minAge.toString());
