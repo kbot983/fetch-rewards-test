@@ -71,7 +71,7 @@ const DogsFilter = ({
     <Sheet>
       <SheetTrigger asChild>
         <Button variant="default" className="w-full md:w-auto">
-          <Filter /> Filter
+          <Filter /> Filters
         </Button>
       </SheetTrigger>
       <SheetContent side={"left"}>

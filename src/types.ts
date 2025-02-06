@@ -14,3 +14,12 @@ export interface Dog {
 export interface Match {
   match: string;
 }
+
+export interface Location {
+  zip_code: string;
+  latitude: number;
+  longitude: number;
+  city: string;
+  state: string;
+  county: string;
+}

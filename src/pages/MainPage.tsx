@@ -11,11 +11,12 @@ import {
 import DogsList from "@/components/ui/DogsList";
 import FavoritesList from "@/components/ui/FavoritesList";
 import { RootState } from "@/store";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { useSelector } from "react-redux";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import MainPagePagination from "@/components/Mainpage/Pagination";
 import SortOptions from "@/components/Mainpage/SortOptions";
+import SearchBox from "@/components/Mainpage/SearchBox";
 
 interface DogsSearchRes {
   resultIds: string[];
@@ -78,6 +79,22 @@ const MainPage = () => {
     navigate(`?${searchParams.toString()}`, { replace: true });
   };
 
+  const handleZipCodeChange = useCallback(
+    (zipCodes: string[]) => {
+      const searchParams = new URLSearchParams(window.location.search);
+      searchParams.set("page", "1");
+      searchParams.delete("zipCodes[]");
+      searchParams.delete("zipCode");
+      if (zipCodes.length === 0) {
+        searchParams.set("zipCode", "not-found");
+      } else {
+        zipCodes.forEach((zip) => searchParams.append("zipCodes[]", zip));
+      }
+      navigate(`?${searchParams.toString()}`, { replace: true });
+    },
+    [navigate],
+  );
+
   return (
     <>
       <div className="flex min-h-[20vh] flex-col items-center justify-center bg-gradient-to-r from-secondary/50 to-secondary/85 p-4 text-primary md:p-8">
@@ -86,6 +103,10 @@ const MainPage = () => {
           Browse through our selection of dogs and favorite the ones you like.
           When you're ready, we will help you find the perfect match.
         </p>
+        <SearchBox
+          className="container mt-4 max-w-xl"
+          onZipCodeChange={handleZipCodeChange}
+        />
       </div>
       <div className="p-4 md:p-8">
         <div className="container mx-auto">

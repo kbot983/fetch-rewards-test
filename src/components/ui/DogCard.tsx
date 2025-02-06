@@ -5,7 +5,7 @@ import { addFavorite, removeFavorite } from "@/store/favoriteSlice";
 import { RootState } from "@/store";
 
 const DogCard = ({ dog }: { dog: Dog }) => {
-  const { img, name, breed, age, id } = dog;
+  const { img, name, breed, age, id, zip_code } = dog;
   const dispatch = useDispatch();
   const favoriteIds = useSelector(
     (state: RootState) => state.favorite.favoriteIds,
@@ -34,16 +34,17 @@ const DogCard = ({ dog }: { dog: Dog }) => {
         />
       </div>
       <img src={img} alt={name} className="aspect-square w-full object-cover" />
-      <div className="p-4">
-        <span className="font-secondary text-lg font-semibold text-primary">
-          {name}
-        </span>
-        <span className="block text-sm text-primary">
+      <div className="p-4 text-primary">
+        <h3 className="font-secondary text-lg font-semibold">{name}</h3>
+        <p className="block text-sm">
           <span className="font-bold text-secondary">Breed:</span> {breed}
-        </span>
-        <span className="block text-sm text-primary">
+        </p>
+        <p className="block text-sm">
           <span className="font-bold text-secondary">Age:</span> {age}
-        </span>
+        </p>
+        <p className="block text-sm">
+          <span className="font-bold text-secondary">Zip Code:</span> {zip_code}
+        </p>
       </div>
     </div>
   );

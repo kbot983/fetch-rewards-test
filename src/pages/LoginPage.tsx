@@ -15,6 +15,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setUser } from "@/store/authSlice";
 import api from "@/lib/api";
+import { useState } from "react";
 
 const formSchema = z.object({
   name: z.string().nonempty("Name is required"),
@@ -33,6 +34,8 @@ const LoginPage = () => {
     },
   });
 
+  const [isError, setIsError] = useState(false);
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -45,45 +48,53 @@ const LoginPage = () => {
       })
       .catch((error) => {
         console.error(error);
+        setIsError(true);
       });
   });
 
   return (
     <div className="flex h-screen items-center justify-center bg-background">
       <div className="w-80 rounded-sm border bg-white p-4 md:p-8">
-        <Form {...form}>
-          <form onSubmit={onSubmit} className="space-y-4">
-            <FormField
-              control={form.control}
-              name="name"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Name</FormLabel>
-                  <FormControl>
-                    <Input placeholder="John Foe" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="email"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Email</FormLabel>
-                  <FormControl>
-                    <Input placeholder="example@email.com" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <Button type="submit" className="w-full">
-              Submit
-            </Button>
-          </form>
-        </Form>
+        <>
+          <Form {...form}>
+            <form onSubmit={onSubmit} className="space-y-4">
+              <FormField
+                control={form.control}
+                name="name"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Name</FormLabel>
+                    <FormControl>
+                      <Input placeholder="John Foe" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Email</FormLabel>
+                    <FormControl>
+                      <Input placeholder="example@email.com" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <Button type="submit" className="w-full">
+                Submit
+              </Button>
+            </form>
+          </Form>
+          {isError && (
+            <div className="mt-4 text-center text-sm text-red-500">
+              Soemthing went wrong. Please try again.
+            </div>
+          )}
+        </>
       </div>
     </div>
   );
