@@ -1,50 +1,55 @@
-# React + TypeScript + Vite
+# Pet Adoption Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern React-based web application for browsing and matching with adoptable dogs. Built with TypeScript, Redux Toolkit, and Tailwind CSS.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 🔍 City-based search with Google Places API integration
+- 🎯 Filtering by breed and age
+- 💟 Favorite dogs management
+- 🔄 Sorting capabilities (breed, age, name)
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **Frontend Framework**: React with TypeScript
+- **State Management**: Redux Toolkit
+- **Routing**: React Router v7
+- **Styling**: Tailwind CSS
+- **UI Components**: shadcn/ui
+- **Form Handling**: React Hook Form with Zod validation
+- **HTTP Client**: Axios
+- **Build Tool**: Vite
+- **Maps Integration**: Google Places API
 
-- Configure the top-level `parserOptions` property like this:
+## Getting Started
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+1. Clone the repository
+2. Install dependencies:
+
+```bash
+npm install
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+3. Create a `.env` file in the root directory with:
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+```env
+VITE_BACKEND_URL=https://frontend-take-home-service.fetch.com
+```
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+4. Start the development server:
+
+```bash
+npm run dev
+```
+
+## Project Structure
+
+```markdown
+src/
+├── components/ # Reusable UI components
+├── pages/ # Page components
+├── store/ # Redux store configuration
+├── lib/ # Utility functions and API setup
+├── types/ # TypeScript type definitions
+└── functions/ # Route loader functions
 ```
