@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer base {
+  :root {
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  body {
+    font-family: "Inter", sans-serif;
+  }
+  h1 {
+    font-family: "Lora", serif;
+    @apply text-4xl;
+  }
+}
+
+@layer utilities {
+  .font-secondary {
+    font-family: "Lora", serif;
+  }
+}
