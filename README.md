@@ -13,7 +13,7 @@ A modern React-based web application for browsing and matching with adoptable do
 
 - **Frontend Framework**: React with TypeScript
 - **State Management**: Redux Toolkit
-- **Routing**: React Router v7
+- **Routing**: React Router
 - **Styling**: Tailwind CSS
 - **UI Components**: shadcn/ui
 - **Form Handling**: React Hook Form with Zod validation
