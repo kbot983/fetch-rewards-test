@@ -2,7 +2,7 @@ import { Dog } from "@/types";
 import { useLoaderData } from "react-router-dom";
 
 const MatchesPage = () => {
-  const { name, img, age, breed } = useLoaderData<Dog>();
+  const { name, img, age, breed, zip_code } = useLoaderData<Dog>();
   return (
     <div className="flex h-screen w-full items-center justify-center bg-gradient-to-r from-secondary/50 to-secondary/85">
       <div className="container mx-4 grid min-h-[80vh] grid-rows-2 rounded-lg bg-white shadow-md md:mx-8 md:grid-cols-2 md:grid-rows-1">
@@ -23,6 +23,9 @@ const MatchesPage = () => {
             </p>
             <p>
               <span className="font-bold">Breed:</span> {breed}
+            </p>
+            <p>
+              <span className="font-bold">Zip Code:</span> {zip_code}
             </p>
           </p>
         </div>
